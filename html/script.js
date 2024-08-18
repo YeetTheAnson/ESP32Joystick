@@ -60,4 +60,53 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mousedown', onMouseDown);
     document.addEventListener('mouseup', onMouseUp);
+
+    const buttons = document.querySelectorAll('.button');
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            console.log(`${button.id.replace('button-', '')} button pressed`);
+        });
+    });
+
+    const bumpers = document.querySelectorAll('.bumper');
+    bumpers.forEach(bumper => {
+        bumper.addEventListener('click', () => {
+            console.log(`${bumper.id.replace('bumper-', '')} bumper pressed`);
+        });
+    });
+
+    const triggers = document.querySelectorAll('.trigger');
+    triggers.forEach(trigger => {
+        trigger.addEventListener('click', () => {
+            console.log(`${trigger.id.replace('trigger-', '')} trigger pressed`);
+        });
+    });
+
+    const dpadButtons = document.querySelectorAll('.dpad-button');
+    dpadButtons.forEach(dpadButton => {
+        dpadButton.addEventListener('click', () => {
+            console.log(`${dpadButton.id.replace('dpad-', '')} pressed`);
+        });
+    });
+
+    const minusButton = document.getElementById('minus');
+    const plusButton = document.getElementById('plus');
+    const squareButton = document.getElementById('square');
+    const homeButton = document.getElementById('home');
+
+    minusButton.addEventListener('click', () => {
+        console.log('Minus button pressed');
+    });
+
+    plusButton.addEventListener('click', () => {
+        console.log('Plus button pressed');
+    });
+
+    squareButton.addEventListener('click', () => {
+        console.log('Square button pressed');
+    });
+
+    homeButton.addEventListener('click', () => {
+        console.log('Home button pressed');
+    });
 });

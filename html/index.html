@@ -3,16 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gamepad with Joysticks</title>
+    <title>Switch Pro Controller</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="gamepad">
-        <div class="joystick" id="joystick1">
-            <div class="stick" id="stick1"></div>
+        <div class="left-column">
+            <div class="trigger" id="trigger-left">L2</div>
+            <div class="bumper" id="bumper-left">L</div>
+            <div class="minus-home-container">
+                <div class="minus" id="minus">-</div>
+                <div class="square" id="square">◻</div>
+            </div>
+            <div class="joystick-container">
+                <div class="joystick" id="joystick1">
+                    <div class="stick" id="stick1"></div>
+                </div>
+                <div class="dpad">
+                    <div class="dpad-button" id="dpad-up">↑</div>
+                    <div class="dpad-button" id="dpad-right">→</div>
+                    <div class="dpad-button" id="dpad-down">↓</div>
+                    <div class="dpad-button" id="dpad-left">←</div>
+                </div>
+            </div>
         </div>
-        <div class="joystick" id="joystick2">
-            <div class="stick" id="stick2"></div>
+        <div class="right-column">
+            <div class="trigger" id="trigger-right">R2</div>
+            <div class="bumper" id="bumper-right">R</div>
+            <div class="home-plus-container">
+                <div class="home" id="home">Home</div>
+                <div class="plus" id="plus">+</div>
+            </div>
+            <div class="buttons">
+                <div class="button" id="button-y">Y</div>
+                <div class="button" id="button-a">A</div>
+                <div class="button" id="button-b">B</div>
+                <div class="button" id="button-x">X</div>
+            </div>
+            <div class="joystick" id="joystick2">
+                <div class="stick" id="stick2"></div>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
