@@ -1,5 +1,6 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
+#include <Wire.h> 
 
 const char* ssid = "WirelessJoystick";
 const char* password = "WirelessJoystick";
@@ -190,7 +191,7 @@ const char MAIN_page[] PROGMEM = R"=====(
               const stickX = distance * Math.cos(angle);
               const stickY = distance * Math.sin(angle);
 
-              stick.style.transform = `translate(${stickX}px, ${stickY}px)`;
+              stick.style.transform = translate(${stickX}px, ${stickY}px);
 
               const mappedX = Math.round((stickX / 150) * 1024);
               const mappedY = Math.round((-stickY / 150) * 1024);
@@ -199,12 +200,12 @@ const char MAIN_page[] PROGMEM = R"=====(
               const formattedY = (mappedY >= 0 ? '+' : '-') + Math.abs(mappedY).toString().padStart(4, '0');
 
               const joystickId = joystick.id === 'joystick1' ? 'LJ' : 'RJ';
-              fetch(`/joystick?id=${joystickId}&x=${formattedX}&y=${formattedY}`);
+              fetch(/joystick?id=${joystickId}&x=${formattedX}&y=${formattedY});
             }
 
             function resetStick(stick, joystickId) {
-                stick.style.transform = `translate(0, 0)`;
-                fetch(`/joystick?id=${joystickId}&x=+0000&y=+0000`);
+                stick.style.transform = translate(0, 0);
+                fetch(/joystick?id=${joystickId}&x=+0000&y=+0000);
             }
 
             function onMove(e) {
@@ -265,20 +266,20 @@ const char MAIN_page[] PROGMEM = R"=====(
             buttons.forEach(button => {
                 button.addEventListener('mousedown', () => {
                     const code = buttonMappings[button.id] || button.id;
-                    fetch(`/button?id=${code}&state=1`);
+                    fetch(/button?id=${code}&state=1);
                 });
                 button.addEventListener('touchstart', () => {
                     const code = buttonMappings[button.id] || button.id;
-                    fetch(`/button?id=${code}&state=1`);
+                    fetch(/button?id=${code}&state=1);
                 });
 
                 button.addEventListener('mouseup', () => {
                     const code = buttonMappings[button.id] || button.id;
-                    fetch(`/button?id=${code}&state=0`);
+                    fetch(/button?id=${code}&state=0);
                 });
                 button.addEventListener('touchend', () => {
                     const code = buttonMappings[button.id] || button.id;
-                    fetch(`/button?id=${code}&state=0`);
+                    fetch(/button?id=${code}&state=0);
                 });
             });
         });
@@ -289,21 +290,21 @@ const char MAIN_page[] PROGMEM = R"=====(
 
 void setup() {
   Serial.begin(115200);
-  
-  // Set up Access Point
+
   WiFi.softAP(ssid, password);
 
   IPAddress myIP = WiFi.softAPIP();
   Serial.print("AP IP address: ");
   Serial.println(myIP);
 
-  // Set up server routes
   server.on("/", HTTP_GET, handleRoot);
   server.on("/joystick", HTTP_GET, handleJoystick);
   server.on("/button", HTTP_GET, handleButton);
 
   server.begin();
   Serial.println("HTTP server started");
+
+  Wire.begin();
 }
 
 void loop() {
@@ -325,6 +326,12 @@ void handleJoystick() {
   Serial.print(",");
   Serial.println(y);
   
+  Wire.beginTransmission(9); 
+  Wire.write(id.c_str());   
+  Wire.write(x.c_str());     
+  Wire.write(y.c_str());     
+  Wire.endTransmission();   
+  
   server.send(200, "text/plain", "OK");
 }
 
@@ -335,6 +342,11 @@ void handleButton() {
   Serial.print(id);
   Serial.print(" ");
   Serial.println(state);
+  
+  Wire.beginTransmission(9); 
+  Wire.write(id.c_str());
+  Wire.write(state.c_str()); 
+  Wire.endTransmission();  
   
   server.send(200, "text/plain", "OK");
 }
