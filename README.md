@@ -1,5 +1,5 @@
 # ESP32Joystick
-Use phone as joystick
+A wifi joystick with the interface hosted on an esp8266
 
 ![ESP32Joystick](https://github.com/YeetTheAnson/ESP32Joystick/raw/main/1.png)
 ![ESP32Joystick](https://github.com/YeetTheAnson/ESP32Joystick/raw/main/2.jpg)
