@@ -1,5 +1,8 @@
 # ESP32Joystick
 A wifi joystick with the interface hosted on an esp8266
+(Despite the name "ESP32Joystick" it uses an ESP8266, it is because I intended an ESP32 to be used at first, but it got too complicated)
+
+This esp8266 joystick has an interface made with html, css and javascript which are hosted on a WiFi capable microcontroller, the esp8266. The esp8266 communicates with an Arduino Pro Micro which emulates the Xbox 360 HID controller over I2C bus protocol.
 
 ![ESP32Joystick](https://github.com/YeetTheAnson/ESP32Joystick/raw/main/1.png)
 ![ESP32Joystick](https://github.com/YeetTheAnson/ESP32Joystick/raw/main/2.jpg)
