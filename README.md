@@ -2,7 +2,7 @@
 Use phone as joystick
 
 ![ESP32Joystick](https://github.com/YeetTheAnson/ESP32Joystick/raw/main/1.png)
-![ESP32Joystick](https://github.com/YeetTheAnson/ESP32Joystick/raw/main/2.png)
+![ESP32Joystick](https://github.com/YeetTheAnson/ESP32Joystick/raw/main/2.jpg)
 
 https://github.com/user-attachments/assets/3ea3ca40-7c02-4e33-9a6d-51664f51ecf4
 
